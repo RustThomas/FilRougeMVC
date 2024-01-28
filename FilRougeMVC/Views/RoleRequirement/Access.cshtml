@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Accès autorisé";
+}
+
+<header>
+    <h1 class="text-success">@ViewData["Title"]</h1>
+    <p class="text-success">Vous avez le droit de saisir un nouveau livre</p>
+    <p>
+        <a asp-controller=Livre asp-action="Create">Create New</a>
+    </p>
+</header>
+<div class="jumbotron">
+    <h1>Gestion des autorisations</h1>
+    <p class="lead">Role == Admin</p>
+    <p><a asp-area="" asp-controller="Claims" asp-action="Remove" class="btn btn-info">Enlever les droits</a></p>
+</div>

@@ -1,0 +1,79 @@
+﻿@model IEnumerable<FilRougeMVC.Data.Livre>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <partial name="_LoginPartial" />
+    <a asp-area="" asp-controller=RoleRequirement asp-action="Access">Create New Avec Autorisation</a>
+</p>
+<p>
+    <a asp-action="Create">Create New Sans Autorisation</a>
+</p>
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Recherche par nom: <input type="text" name="SearchString"
+                                 value="@ViewData["CurrentFilter"]" />
+            <input type="submit" value="Recherche" class="btn btndefault" /> |
+            <a asp-action="Index">Retour à la liste complète</a>
+        </p>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Titre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombrePages)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StatutDuLivre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EtatDuLivre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Auteur)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Domaine)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombrePages)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StatutDuLivre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EtatDuLivre)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Auteur.Prenom) @Html.DisplayFor(modelItem => item.Auteur.Nom);
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Domaine.Description)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
